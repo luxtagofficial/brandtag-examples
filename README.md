@@ -6,8 +6,9 @@ For landing page certificate payload look at `/certificate.html`
 
 ## To Run
 
-Install python3
+1. Install python3
 
+2. Run
 ```
 python server.py
 ```
