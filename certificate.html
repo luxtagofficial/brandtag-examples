@@ -14,7 +14,7 @@
 
   // Setup DOM
   const div = document.getElementById("app");
-  div.innerText = "Fetching redirect URL";
+  div.innerText = "Fetching certificate data";
   
   // Parse window searchParams for code and fetch certificate data
   fetch(`${API_URL}/tag/verify${window.location.search}`)
