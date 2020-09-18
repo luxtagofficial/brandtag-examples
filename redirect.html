@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <title>BrandTag QR Redirect Example</title>
+</head>
+
+<body>
+  <div id="app">You need to enable JavaScript to run this app</div>
+</body>
+
+<script>
+  // Backend URL. Change to https://trasee.brandtag.io for production
+  const API_URL = "https://trasee.staging.brandtag.io";
+
+  // Setup DOM
+  const div = document.getElementById("app");
+  div.innerText = "Fetching redirect URL";
+
+  // Parse window location for code and fetch redirect URL 
+  const url = new URL(document.location);
+  const code = url.pathname.substr(3)
+  
+  fetch(`${API_URL}/forward/m?forwarded_url=${code}`)
+    .then(async (response) => {
+      if (response.ok) {
+        const result = await response.json(); // Parse response as JSON object
+
+        div.innerHTML = `Redirecting you to <a href=${result.original_url}>${result.original_url}</a> in 5 seconds...`;
+
+        // Up and away!
+        setTimeout(() => {
+          window.location = result.original_url
+        }, 2500)
+
+      } else {
+        div.innerText = "Invalid short code"
+      }
+    })
+</script>
+
+</html>
