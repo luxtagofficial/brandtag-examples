@@ -18,7 +18,7 @@
 
   // Parse window location for code and fetch redirect URL 
   const url = new URL(document.location);
-  const code = url.pathname.substr(3)
+  const code = url.href.split('/v?')[1]
   
   fetch(`${API_URL}/forward/m?forwarded_url=${code}`)
     .then(async (response) => {
